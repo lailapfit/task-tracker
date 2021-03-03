@@ -1,13 +1,12 @@
 <template>
     <div class="customers-container">
-        <div class="section shadow">
-            <ul v-for="customer in customers" :key="customer.id">
-                <li>
-                    <h3>{{ customer.name }}</h3>
-                    <button class="secondary-button">UPDATE</button>
-                    <button class="secondary-button">DELETE</button>
-                </li>
-            </ul>
+        <div class="shadow table">
+            <b-table hover :items="customers" :fields="fields">
+                <template #cell(actions)="data">
+                    <b-button size="sm" class="mr-2" @click="updateCustomer(data.item.id)" :ref="data.id">EDIT</b-button>
+                    <b-button size="sm" class="mr-2" @click="deleteCustomer(data.item.id)" :ref="data.id">DELETE</b-button>
+                </template>
+            </b-table>
         </div>
     </div>
 </template>
@@ -17,17 +16,25 @@ export default {
     name: "Customer",
     data() {
         return {
-            customers: []
+            customers: [],
+            fields: ['id', 'name', 
+            { key: 'actions', label: 'Actions' }]
         }
     },
     methods: {
         getAllCustomers: function() {
             this.$http.get('http://localhost:8000/customer/')
             .then(customers => {
-                console.log('customers: ' + JSON.stringify(customers))
                 this.customers = customers.data;
+                console.log('customers: ' + JSON.stringify(this.customers))
             })
             .catch(error => console.log(error))
+        },
+        updateCustomer: function(customer) {
+            console.log('Updated customer: ' + customer);
+        },
+        deleteCustomer: function(customer) {
+            console.log('Deleted customer: ' + customer.name);
         }
     },
     mounted() {

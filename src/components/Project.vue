@@ -1,15 +1,21 @@
 <template>
   <div class="projects-container">
-    <ul v-for="project in projects" :key="project.project_id">
-      <li>
-        <div class="section shadow">
-          <h3>Project: {{ project.project_name }}</h3>
-          <h4>Customer: {{ project.customer_name }}</h4>
-          <button class="secondary-button">UPDATE</button>
-          <button class="secondary-button">DELETE</button>
-        </div>
-      </li>
-    </ul>
+    <div class="shadow table">
+      <b-table hover :items="projects" :fields="fields">
+        <template #cell(project)="data">
+          <span class="margin-right-md">{{ data.item.project_name }}</span>
+          <b-button size="sm" class="margin-right-md" variant="success" @click="updateProject(data.item.project_id)">EDIT</b-button>
+          <b-button size="sm" class="margin-right-md" variant="danger" @click="deleteProject(data.item.project_id)">DELETE</b-button>
+        </template>
+        <template #cell(customer)="data">
+          <span class="margin-right-md">{{ data.item.customer_name }}</span>
+          <b-button size="sm" class="margin-right-md" variant="success" @click="updateCustomer(data.item.customer_id)">EDIT</b-button>
+        </template>
+        <template #cell(actions)="data">
+          <b-button size="sm" @click="updateCustomer(data.item.customer_id)">GO TO TASKS</b-button>
+        </template>
+      </b-table>
+    </div>
   </div>
 </template>
 
@@ -18,7 +24,8 @@ export default {
   name: "Project",
   data () {
     return {
-      projects: []
+      projects: [],
+      fields: ['project_id', 'project', 'customer', 'actions']
     }
   },
   methods: {
@@ -28,7 +35,17 @@ export default {
           console.log('projects: ' + JSON.stringify(projects))
           this.projects = projects.data;
       })
-      .catch(error => console.log(error))}
+      .catch(error => console.log(error))
+      },
+      updateProject: function(project) {
+        console.log('Updated project: ' + project);
+      },
+      updateCustomer: function(customer) {
+        console.log('Updated customer: ' + customer);
+      },
+      deleteProject: function(project) {
+        console.log('Deleted customer: ' + project);
+      }
   },
   mounted() {
     this.getAllProjects();

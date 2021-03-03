@@ -38,11 +38,13 @@
 
 .section {
     height: 100%;
-    width: 50%;
+    width: 75%;
     border: 1px solid #7593FF;
     background-color: #7593FF;
     border-radius: 15px;
-    padding-bottom: 2%;
+    padding: 2%;
+    margin: auto;
+    margin-bottom: 25px;
 }
 
 .secondary-button {
@@ -55,6 +57,15 @@
     color: #7593FF;
     font-weight: 600;
     margin-right: 15px;
+}
+
+.table {
+    width: 80%;
+    margin: auto;
+}
+
+.margin-right-md {
+  margin-right: 15px;
 }
 
 </style>
