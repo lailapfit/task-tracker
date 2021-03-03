@@ -59,13 +59,12 @@
     margin-right: 15px;
 }
 
-.table {
-  width: 80%;
-  margin: auto;
-}
-
 .margin-right-md {
   margin-right: 15px;
 }
 
+.float-right {
+  float: right;
+  margin: 5px 20px 20px 0;
+}
 </style>

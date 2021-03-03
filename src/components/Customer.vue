@@ -1,10 +1,11 @@
 <template>
     <div class="customers-container">
+        <b-button class="float-right" size="lg" variant="success">+ NEW CUSTOMER</b-button>
         <div class="shadow table">
             <b-table hover :items="customers" :fields="fields">
                 <template #cell(actions)="data">
-                    <b-button size="sm" class="mr-2" @click="updateCustomer(data.item.id)" :ref="data.id">EDIT</b-button>
-                    <b-button size="sm" class="mr-2" @click="deleteCustomer(data.item.id)" :ref="data.id">DELETE</b-button>
+                    <b-button size="sm" class="mr-2" variant="primary" @click="updateCustomer(data.item.id)" :ref="data.id">EDIT</b-button>
+                    <b-button size="sm" class="mr-2" variant="danger" @click="deleteCustomer(data.item.id)" :ref="data.id">DELETE</b-button>
                 </template>
             </b-table>
         </div>

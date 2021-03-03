@@ -1,7 +1,7 @@
 <template>
     <div class="tasks-container">
+        <b-button class="float-right" size="lg" variant="success" @click="addNewTask">+ NEW TASK</b-button>
         <div class="shadow">
-            <b-button @click="addNewTask">+ NEW TASK</b-button>
             <b-table hover :items="taskLogs" :fields="fields">
                 <template #cell(actions)="data">
                     <b-button size="sm" class="margin-right-md" variant="primary" @click="updateTask(data.item.task_log_id)">EDIT</b-button>
@@ -18,7 +18,6 @@ export default {
     name: "Task",
     data() {
         return {
-            // taskLogsByTaskId: [],
             taskLogs: [],
             fields: ['task_id', 'task_description', 'user_email', 'project_name', 'duration_minutes', 'actions']
         }
@@ -28,27 +27,9 @@ export default {
             this.$http.get('http://localhost:8000/task-log/')
             .then(taskLogs => {
                 this.taskLogs = taskLogs.data;
-                // let sortedTaskLogs = this.sortTaskLogsByTaskId(this.taskLogs);
-                // this.taskLogsByTaskId = this.objToArray(sortedTaskLogs);
             })
             .catch(error => console.log(error))
         },
-        // sortTaskLogsByTaskId: function(taskLogs) {
-        //     let taskLogsSorted = {};
-        //     taskLogs.forEach(taskLog => {
-        //         if (taskLogsSorted.hasOwnProperty(taskLog)) {
-        //             taskLogsSorted[taskLog].push(taskLog);
-        //         } else {
-        //             taskLogsSorted[taskLog] = [taskLog];
-        //         }
-        //     })
-        //     return taskLogSorted;
-        // },
-        // objToArray: function(obj) {
-        //     return Object.keys(obj).map(o => {
-        //         return { o: obj[o] };
-        //     })
-        // },
         addTaskLog: function(taskId, userId, projectId) {
             console.log('Add new task: ' + taskId + ' with ' + userId + ' in project ' + projectId);
         },
