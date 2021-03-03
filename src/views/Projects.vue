@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="project">
     <Project msg="Welcome to Your Vue.js App" />
   </div>
 </template>
@@ -9,7 +9,7 @@
 import Project from "@/components/Project.vue";
 
 export default {
-  name: "Home",
+  name: "Projects",
   components: {
     Project
   }
