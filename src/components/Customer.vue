@@ -1,14 +1,14 @@
 <template>
     <div class="customers-container">
-        <ul v-for="customer in customers" :key="customer.id">
-            <li>
-                <div class="section shadow">
+        <div class="section shadow">
+            <ul v-for="customer in customers" :key="customer.id">
+                <li>
                     <h3>{{ customer.name }}</h3>
                     <button class="secondary-button">UPDATE</button>
                     <button class="secondary-button">DELETE</button>
-                </div>
-            </li>
-        </ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 

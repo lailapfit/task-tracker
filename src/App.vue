@@ -57,7 +57,4 @@
     margin-right: 15px;
 }
 
-li {
-    list-style: none;
-}
 </style>
