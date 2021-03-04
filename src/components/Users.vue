@@ -18,7 +18,7 @@
                     <input id="password" v-model="password">
                 </div>
             </div>
-            <button class="main-button" type="button">LOGIN</button>
+            <button class="main-button" type="button" @click="login">LOGIN</button>
         </div>
     </div>
 </template>
@@ -30,6 +30,14 @@ export default {
         return {
             email: '',
             password: ''
+        }
+    },
+    methods: {
+        login: function() {
+            this.$http.post('http://localhost:8000/user/login', { "email": this.email, "password": this.password})
+            .then(user => {
+                console.log('user login: ' + JSON.stringify(user))
+            })
         }
     }
 }
