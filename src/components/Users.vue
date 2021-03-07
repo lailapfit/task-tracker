@@ -29,16 +29,31 @@ export default {
     data() {
         return {
             email: '',
-            password: ''
+            password: '',
+            userId: ''
         }
     },
     methods: {
         login: function() {
             this.$http.post('http://localhost:8000/user/login', { "email": this.email, "password": this.password})
             .then(user => {
-                console.log('user login: ' + JSON.stringify(user))
+                console.log('user login: ' + JSON.stringify(user));
+                user.data.updatedUser.forEach(u => {
+                    this.userId = u.id;
+                    console.log('userid: ' + u.id);
+                    this.email = u.email;
+                })
             })
         }
+    },
+    watch: {
+        userId: function(val) {
+            console.log('watch userid: ' + val)
+            this.$userId = val;
+        },
+        email: function(val) {
+            this.$email = val;
+        },
     }
 }
 </script>
